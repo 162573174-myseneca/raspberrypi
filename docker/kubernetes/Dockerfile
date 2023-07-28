@@ -37,7 +37,7 @@ RUN chmod -R +x Viper-preprocess2
 ######################################### Viper Producer directory
 WORKDIR Viper-produce
 
-RUN git clone --depth 1 https://github.com/smaurice101/transactionalmachinelearning.git
+RUN git clone --depth 1 https://github.com/162573174-myseneca/transactionalmachinelearning.git
 RUN echo "*******************Viper for $CHIP PRODUCER**********************"
 
 RUN if [ "$CHIP" = "ARM32" ] ; \
@@ -61,7 +61,7 @@ RUN chmod -R +x Viper-produce
 ######################################### Viper Preprocess directory
 WORKDIR Viper-preprocess
 
-RUN git clone --depth 1 https://github.com/smaurice101/transactionalmachinelearning.git
+RUN git clone --depth 1 https://github.com/162573174-myseneca/transactionalmachinelearning.git
 RUN echo "*******************Viper for $CHIP PREPROCESS**********************"
 
 RUN if [ "$CHIP" = "ARM32" ] ; \
@@ -85,7 +85,7 @@ RUN chmod -R +x Viper-preprocess
 ######################################### Viper Preprocess2 directory
 WORKDIR Viper-preprocess2
 
-RUN git clone --depth 1 https://github.com/smaurice101/transactionalmachinelearning.git
+RUN git clone --depth 1 https://github.com/162573174-myseneca/transactionalmachinelearning.git
 RUN echo "*******************Viper for $CHIP PREPROCESS2**********************"
 
 RUN if [ "$CHIP" = "ARM32" ] ; \
@@ -114,7 +114,7 @@ RUN chmod -R +x Viperviz
 
 WORKDIR Viperviz
 
-RUN git clone --depth 1 https://github.com/smaurice101/transactionalmachinelearning.git
+RUN git clone --depth 1 https://github.com/162573174-myseneca/transactionalmachinelearning.git
 
 #RUN unzip transactionalmachinelearning/ARM-Chipset/MAADS-VIPERviz\ *\ Linux\ ARM.zip || true
 RUN if [ "$CHIP" = "ARM32" ] ; \
@@ -149,7 +149,7 @@ RUN mkdir Hpde
 RUN chmod -R +x Hpde
 WORKDIR Hpde
 
-RUN git clone --depth 1 https://github.com/smaurice101/transactionalmachinelearning.git
+RUN git clone --depth 1 https://github.com/162573174-myseneca/transactionalmachinelearning.git
 
 RUN if [ "$CHIP" = "ARM32" ] ; \
   then \
@@ -213,7 +213,7 @@ RUN apt -y install mariadb-server
 # FLUSH PRIVILEGES;
 
 RUN echo "Replace VIPER.ENV"
-RUN git clone --depth 1 https://github.com/smaurice101/raspberrypi.git
+RUN git clone --depth 1 https://github.com/162573174-myseneca/raspberrypi.git
 
 RUN chmod -R +x raspberrypi
 
