@@ -120,7 +120,7 @@ def sendtransactiondata(maintopic,mainproducerid,VIPERPORT,index,preprocesstopic
 
       # Roll back each data stream by 10 percent - change this to a larger number if you want more data
       # For supervised machine learning you need a minimum of 30 data points in each stream
-     maxrows=500
+     maxrows=2000
       # Go to the last offset of each stream: If lastoffset=500, then this function will rollback the 
       # streams to offset=500-50=450
      offset=-1
@@ -175,13 +175,21 @@ def sendtransactiondata(maintopic,mainproducerid,VIPERPORT,index,preprocesstopic
  
 #	  // check for payload  'uid=subject.reference,filter:resourceType=MedicationAdministration,payload=payload.payload~\
 
-     jsoncriteria='uid=metadata.dsn,filter:allrecords~\
-subtopics=metadata.property_name~\
-values=datapoint.value~\
-identifiers=metadata.display_name~\
-datetime=datapoint.updated_at~\
-msgid=datapoint.id~\
-latlong=lat:long'     
+jsoncriteria = (
+    f'uid={id},' \
+    f'filter:allrecords~' \
+    f'subtopics={name}~' \
+    f'values={latitude}:{longitude}~' \
+    f'identifiers={name}~' \
+    f'state_id={state_id}~' \
+    f'state_code={state_code}~' \
+    f'country_id={country_id}~' \
+    f'country_code={country_code}~' \
+    f'msgid={id}~' \
+    f'latlong={latitude}:{longitude}'
+)
+
+
 
 #     jsoncriteria='uid=entry.0.resource.id,filter:allrecords~\
 #subtopics=entry.1.resource.type.0.coding.0.code~\
