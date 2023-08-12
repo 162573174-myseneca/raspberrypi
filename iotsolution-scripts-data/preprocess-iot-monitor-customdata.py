@@ -1,5 +1,5 @@
 # Developed by: Sebastian Maurice, PhD
-# Date: 2021-01-18 
+# Date: 2023-05-18 
 # Toronto, Ontario Canada
 
 # TML python library
@@ -23,8 +23,7 @@ import datetime
 import time
 import os
 
-basedir = os.environ['userbasedir'] 
-
+basedir = os.environ['userbasedir']
 # Set Global Host/Port for VIPER - You may change this to fit your configuration
 VIPERHOST=''
 VIPERPORT=''
@@ -63,9 +62,9 @@ def datasetup(maintopic,preprocesstopic):
      mylocation="Toronto"
 
      # Replication factor for Kafka redundancy
-     replication=3
+     replication=1
      # Number of partitions for joined topic
-     numpartitions=3
+     numpartitions=1
      # Enable SSL/TLS communication with Kafka
      enabletls=1
      # If brokerhost is empty then this function will use the brokerhost address in your
@@ -120,7 +119,7 @@ def sendtransactiondata(maintopic,mainproducerid,VIPERPORT,index,preprocesstopic
 
       # Roll back each data stream by 10 percent - change this to a larger number if you want more data
       # For supervised machine learning you need a minimum of 30 data points in each stream
-     maxrows=2000
+     maxrows=500
       # Go to the last offset of each stream: If lastoffset=500, then this function will rollback the 
       # streams to offset=500-50=450
      offset=-1
@@ -177,13 +176,11 @@ def sendtransactiondata(maintopic,mainproducerid,VIPERPORT,index,preprocesstopic
 
      jsoncriteria='uid=id,filter:allrecords~\
 subtopics=Device~\
-values=Voltage~\
+values=Volatge~\
 identifiers=id~\
 datetime=Datetime~\
 msgid=id~\
-latlong=lat:long' 
-
-
+latlong=lat:long'    
 
 #     jsoncriteria='uid=entry.0.resource.id,filter:allrecords~\
 #subtopics=entry.1.resource.type.0.coding.0.code~\
@@ -194,7 +191,7 @@ latlong=lat:long'
 #latlong=entry.1.resource.position.latitude:entry.1.resource.position.longitude'     # use : to join multiple fields
 
 
-     tmlfilepath=''
+     tmlfilepath=''jsoncriteria
      
      usemysql=1
 
@@ -203,13 +200,7 @@ latlong=lat:long'
  
      identifier = "IoT device performance and failures"
 
-     # if dataage - use:dataage_utcoffset_timetype
-     preprocesslogic='anomprob,trend,avg,sum,diff,count,min,max'
-     #preprocesslogic='dataage_-4_day,trend,min,max' # millisecond,second,minute,hour,day
-     #preprocesslogic='dataage_-4_hour' # millisecond,second,minute,hour,day
-#     preprocesslogic='dataage_1_minute' # millisecond,second,minute,hour,day
-#     preprocesslogic='dataage_1_second' # millisecond,second,minute,hour,day
-#     preprocesslogic='dataage_1_millisecond' # millisecond,second,minute,hour,day
+     preprocesslogic='variance,avg,min,trend,consistency'
 
      
 #     pathtotmlattrs='oem=id,lat=subject.reference,long=component.0.code.coding.0.display,location=component.1.valueQuantity.value'     

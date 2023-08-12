@@ -8,15 +8,6 @@ Docker build command: docker build -t <container name> --build-arg CHIP=<chip ar
 replace: <container name> with name of your container
 replace: <chip arch> with: ARM32, or ARM64, or AMD64
 
-TO SPEED UP DOCKER BUILDS DO THIS:
-1. In your docker file add in a location where you want to start re-build.  EVERYTHING following this command will be rebuilt, everything above this 
-command will force Docker to used the cached layers: 
-# Custom cache invalidation
-ARG CACHEBUST=1
-
-2. Change your Docker build command to:
-docker build -t <container name> --build-arg CHIP=<chip arch> --build-arg CACHEBUST=$(date +%s) --network=host .
-
 Docker Tag: docker tag <container id>
 Docker Run: docker run -p 9005:<viperviz port> <container name>
 Replace <container id> with container id or name. Replace <viperviz port> with port viperviz is listening; do the following:
@@ -46,7 +37,3 @@ then TRY in Linux:
 export DOCKER_BUILDKIT=0
 export COMPOSE_DOCKER_CLI_BUILD=0
 
-#IP tables issue try:
-sudo update-alternatives --set iptables /usr/sbin/iptables-legacy
-sudo update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
-sudo dockerd &

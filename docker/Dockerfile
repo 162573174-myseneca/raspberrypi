@@ -73,7 +73,7 @@ RUN apt -y install mariadb-server
 ################# IOT DATA
 WORKDIR IotSolution
 
-RUN wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1SfnJFtQ9JVrpWzjRUV5Bt6ZDCEFhQYc1' -O IoTData.zip
+RUN wget --no-check-certificate 'https://drive.google.com/uc?export=download&id=1bvG-2IlmvuawrBHp_uZBlJXZg7A0VniX' -O IoTData.zip
 RUN chmod +x IoTData.zip
 RUN unzip IoTData.zip
 
@@ -264,7 +264,7 @@ RUN chmod -R +x Hpde
 
 
 RUN echo "Replace VIPER.ENV"
-RUN git clone --depth 1 https://github.com/162573174-myseneca/raspberrypi.git
+RUN git clone --depth 1 https://github.com/133943217-myseneca/raspberrypi.git
 
 RUN chmod -R +x raspberrypi
 
